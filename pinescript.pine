@@ -1,0 +1,21 @@
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © johanekberg14
+
+//@version=4
+study(title="RSI Lines signal", shorttitle="RSI Signal", overlay=true)
+
+// Get user input
+rsiLength = input(title="RSI Length", type=input.integer, defval=14)
+rsiUBB = input(title="RSI Upper bearish blue level", type=input.float, defval=60)
+rsiLBR = input(title="RSI Lower bullish red Level", type=input.float, defval=40)
+margin = input(title="Wiggle room for signal", type=input.float, defval=0.03)
+
+
+// Get RSI value
+RSIValue = rsi(close, rsiLength)
+prevRSIValue = rsi(close[1], rsiLength)
+rsiUBBtouch = (RSIValue >= rsiUBB-margin) and (RSIValue <= rsiUBB+margin) and prevRSIValue <= RSIValue
+rsiLBRtouch = (RSIValue >= rsiLBR-margin) and (RSIValue <= rsiLBR+margin) and prevRSIValue >= RSIValue
+
+// Send out an alert if this candle meets our conditions
+alertcondition(rsiUBBtouch or rsiLBRtouch, title="RSI Alert!", message="RSI signal for {{ticker}}")
