@@ -1,1 +1,1 @@
-# RSI-strategy---Alert-Script
+# RSI-strategy-Alert-Script
