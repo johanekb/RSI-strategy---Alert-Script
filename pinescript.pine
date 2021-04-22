@@ -8,7 +8,7 @@ study(title="RSI Lines signal", shorttitle="RSI Signal", overlay=true)
 rsiLength = input(title="RSI Length", type=input.integer, defval=14)
 rsiUBB = input(title="RSI Upper bearish blue level", type=input.float, defval=60)
 rsiLBR = input(title="RSI Lower bullish red Level", type=input.float, defval=40)
-margin = input(title="Wiggle room for signal", type=input.float, defval=0.03)
+margin = input(title="Wiggle room for signal", type=input.float, defval=0.25)
 
 
 // Get RSI value
