@@ -16,6 +16,5 @@ RSIValue = rsi(close, rsiLength)
 prevRSIValue = rsi(close[1], rsiLength)
 rsiUBBtouch = (RSIValue >= rsiUBB-margin) and (RSIValue <= rsiUBB+margin) and prevRSIValue <= RSIValue
 rsiLBRtouch = (RSIValue >= rsiLBR-margin) and (RSIValue <= rsiLBR+margin) and prevRSIValue >= RSIValue
-plot(RSIValue, title='PlotRSI', transp=100)
 // Send out an alert if this candle meets our conditions
-alertcondition(rsiUBBtouch or rsiLBRtouch, title="RSI Alert!", message='RSI signal {{ticker}} RSI value: {{plot_0}}')
+alertcondition(rsiUBBtouch or rsiLBRtouch, title="RSI Alert!", message='RSI signal {{ticker}}')
