@@ -8,7 +8,7 @@ study(title="RSI Lines signal", shorttitle="RSI Signal", overlay=true)
 rsiLength = input(title="RSI Length", type=input.integer, defval=14)
 rsiUBB = input(title="RSI Upper bearish blue level", type=input.float, defval=60)
 rsiLBR = input(title="RSI Lower bullish red Level", type=input.float, defval=40)
-margin = input(title="Wiggle room for signal", type=input.float, defval=0.25)
+margin = input(title="Wiggle room for signal", type=input.float, defval=0.03)
 
 
 // Get RSI value
@@ -16,6 +16,6 @@ RSIValue = rsi(close, rsiLength)
 prevRSIValue = rsi(close[1], rsiLength)
 rsiUBBtouch = (RSIValue >= rsiUBB-margin) and (RSIValue <= rsiUBB+margin) and prevRSIValue <= RSIValue
 rsiLBRtouch = (RSIValue >= rsiLBR-margin) and (RSIValue <= rsiLBR+margin) and prevRSIValue >= RSIValue
-
+plot(RSIValue, title='PlotRSI', transp=100)
 // Send out an alert if this candle meets our conditions
-alertcondition(rsiUBBtouch or rsiLBRtouch, title="RSI Alert!", message="RSI signal for {{ticker}}")
+alertcondition(rsiUBBtouch or rsiLBRtouch, title="RSI Alert!", message='RSI signal {{ticker}} RSI value: {{plot_0}}')
